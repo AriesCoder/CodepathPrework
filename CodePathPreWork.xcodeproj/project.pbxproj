@@ -13,6 +13,12 @@
 		A1B36BBC295265BB00C25003 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1B36BBA295265BB00C25003 /* Main.storyboard */; };
 		A1B36BBE295265BC00C25003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1B36BBD295265BC00C25003 /* Assets.xcassets */; };
 		A1B36BC1295265BC00C25003 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1B36BBF295265BC00C25003 /* LaunchScreen.storyboard */; };
+		A1B36BC9295385D100C25003 /* IntroductionCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B36BC8295385D100C25003 /* IntroductionCVC.swift */; };
+		A1B36BCB295387C100C25003 /* IntroductionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B36BCA295387C100C25003 /* IntroductionCell.swift */; };
+		A1B36BD02953D49000C25003 /* StudentIntro.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A1B36BCE2953D49000C25003 /* StudentIntro.xcdatamodeld */; };
+		A1B36BD82953DB1F00C25003 /* StudentIntro+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B36BD62953DB1F00C25003 /* StudentIntro+CoreDataClass.swift */; };
+		A1B36BD92953DB1F00C25003 /* StudentIntro+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B36BD72953DB1F00C25003 /* StudentIntro+CoreDataProperties.swift */; };
+		A1B36BDB2953E92000C25003 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B36BDA2953E92000C25003 /* PersistenceManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +30,12 @@
 		A1B36BBD295265BC00C25003 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1B36BC0295265BC00C25003 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A1B36BC2295265BC00C25003 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1B36BC8295385D100C25003 /* IntroductionCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionCVC.swift; sourceTree = "<group>"; };
+		A1B36BCA295387C100C25003 /* IntroductionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionCell.swift; sourceTree = "<group>"; };
+		A1B36BCF2953D49000C25003 /* StudentIntro.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StudentIntro.xcdatamodel; sourceTree = "<group>"; };
+		A1B36BD62953DB1F00C25003 /* StudentIntro+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentIntro+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A1B36BD72953DB1F00C25003 /* StudentIntro+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentIntro+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A1B36BDA2953E92000C25003 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +70,51 @@
 			children = (
 				A1B36BB4295265BB00C25003 /* AppDelegate.swift */,
 				A1B36BB6295265BB00C25003 /* SceneDelegate.swift */,
-				A1B36BB8295265BB00C25003 /* ViewController.swift */,
-				A1B36BBA295265BB00C25003 /* Main.storyboard */,
 				A1B36BBD295265BC00C25003 /* Assets.xcassets */,
 				A1B36BBF295265BC00C25003 /* LaunchScreen.storyboard */,
 				A1B36BC2295265BC00C25003 /* Info.plist */,
+				A1B36BD52953D73300C25003 /* Model */,
+				A1F8A781295529A700B16B86 /* Managers */,
+				A1F8A782295529C300B16B86 /* Views */,
+				A1F8A7802955293B00B16B86 /* Controllers */,
 			);
 			path = CodePathPreWork;
+			sourceTree = "<group>";
+		};
+		A1B36BD52953D73300C25003 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A1B36BCE2953D49000C25003 /* StudentIntro.xcdatamodeld */,
+				A1B36BCA295387C100C25003 /* IntroductionCell.swift */,
+				A1B36BD62953DB1F00C25003 /* StudentIntro+CoreDataClass.swift */,
+				A1B36BD72953DB1F00C25003 /* StudentIntro+CoreDataProperties.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A1F8A7802955293B00B16B86 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A1B36BB8295265BB00C25003 /* ViewController.swift */,
+				A1B36BC8295385D100C25003 /* IntroductionCVC.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A1F8A781295529A700B16B86 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				A1B36BDA2953E92000C25003 /* PersistenceManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		A1F8A782295529C300B16B86 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A1B36BBA295265BB00C25003 /* Main.storyboard */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +188,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1B36BCB295387C100C25003 /* IntroductionCell.swift in Sources */,
+				A1B36BD02953D49000C25003 /* StudentIntro.xcdatamodeld in Sources */,
+				A1B36BD82953DB1F00C25003 /* StudentIntro+CoreDataClass.swift in Sources */,
 				A1B36BB9295265BB00C25003 /* ViewController.swift in Sources */,
 				A1B36BB5295265BB00C25003 /* AppDelegate.swift in Sources */,
+				A1B36BC9295385D100C25003 /* IntroductionCVC.swift in Sources */,
+				A1B36BDB2953E92000C25003 /* PersistenceManager.swift in Sources */,
+				A1B36BD92953DB1F00C25003 /* StudentIntro+CoreDataProperties.swift in Sources */,
 				A1B36BB7295265BB00C25003 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,6 +414,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A1B36BCE2953D49000C25003 /* StudentIntro.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A1B36BCF2953D49000C25003 /* StudentIntro.xcdatamodel */,
+			);
+			currentVersion = A1B36BCF2953D49000C25003 /* StudentIntro.xcdatamodel */;
+			path = StudentIntro.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A1B36BA9295265BB00C25003 /* Project object */;
 }

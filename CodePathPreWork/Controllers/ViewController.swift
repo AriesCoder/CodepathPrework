@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
 
@@ -25,20 +26,26 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var introBtn: UIButton!
     
+    @IBOutlet weak var introductionsBtn: UIButton!
+    
+    var introduction = ""
+    var introductions = [StudentIntro]()
+    let persistenceManager = PersistenceManager()
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        updateUI()
+        updateUIs()
     }
     
-
+//MARK: - IBActions
     @IBAction func stepperDidChange(_ sender: UIStepper) {
         
         numberOfPetLabel.text = "\(Int(sender.value))"
     }
     
     
-    @IBAction func introduceDidTapped(_ sender: UIButton) {
+    @IBAction func introduceDidTapped(_ sender: Any) {
           
         guard !firstNameTF.text!.isEmpty,
               !lastNameTF.text!.isEmpty,
@@ -49,9 +56,29 @@ class ViewController: UIViewController {
         }
         
         introductionAlert()
+        
+        let newIntro    = StudentIntro(context: persistenceManager.context)
+        newIntro.name   = firstNameTF.text! + " " + lastNameTF.text!
+        newIntro.introduction = introduction
+        
+        persistenceManager.saveStudentIntro()
     }
     
     
+    @IBAction func introductionsDidTapped(_ sender: Any) {
+        
+        introductions = persistenceManager.loadStudentIntro()
+    }
+    
+    
+//MARK: - Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! IntroductionCVC
+        destination.dataArr = introductions
+    }
+    
+    
+//MARK: - Alerts
     func emptyFieldAlert(){
         
         let alertController = UIAlertController(title: "Empty field(s)", message: "Please fill out the empty field(s)", preferredStyle: .alert)
@@ -68,7 +95,7 @@ class ViewController: UIViewController {
         
         let year = yearSC.titleForSegment(at: yearSC.selectedSegmentIndex)
         
-        let introduction = "My name is \(firstNameTF.text!) \(lastNameTF.text!) and I attend \(schoolTF.text!). I am currently in my \(year!) year and I own \(numberOfPetLabel.text!) dogs. It is \(morePetSwitch.isOn) that I want more pets."
+        introduction = "My name is \(firstNameTF.text!) \(lastNameTF.text!) and I attend \(schoolTF.text!). I am currently in my \(year!) year and I own \(numberOfPetLabel.text!) dogs. It is \(morePetSwitch.isOn) that I want more pets."
         
         let alertController = UIAlertController(title: "My Introdution", message: introduction, preferredStyle: .alert)
         
@@ -80,12 +107,14 @@ class ViewController: UIViewController {
     }
     
     
-    func updateUI(){
+//MARK: - updateUIs
+    func updateUIs(){
         
         configureTF()
         configureSchoolLogo()
         configureYearSC()
         configureIntroBtn()
+        configureIntroductionsBtn()
     }
     
     
@@ -139,9 +168,16 @@ class ViewController: UIViewController {
         introBtn.tintColor          = .white
         introBtn.backgroundColor    = .systemCyan
         introBtn.clipsToBounds      = true
-        
-        introBtn.setTitleColor(.systemCyan, for: .selected)
         }
+    
+    
+    func configureIntroductionsBtn(){
+        
+        introductionsBtn.layer.cornerRadius = 10
+        introductionsBtn.clipsToBounds      = true
+        introductionsBtn.configuration?.baseForegroundColor    = .systemCyan
+        introductionsBtn.configuration?.baseBackgroundColor    = .systemCyan
+    }
     
 }
 
