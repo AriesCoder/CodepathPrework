@@ -7,24 +7,18 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
 class IntroductionCVC: UICollectionViewController {
     
     var dataArr = [StudentIntro]()
     var persistenceManager = PersistenceManager()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem = editButtonItem
     }
     
     
-    @IBAction func deleteTapped(_ sender: Any) {
-        
-        
-    }
-    
-    
+    //MARK: - CollectionView
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return dataArr.count
@@ -33,20 +27,44 @@ class IntroductionCVC: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let introductionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! IntroductionCell
+        let introductionCell = collectionView.dequeueReusableCell(withReuseIdentifier: IntroductionCell.reuseIdentifier, for: indexPath) as! IntroductionCell
             
-        introductionCell.configureNameLabel(name: dataArr[indexPath.row].name!)
-        introductionCell.configureIntroductionTF(text: dataArr[indexPath.row].introduction!)
+        introductionCell.setLabelName(name: dataArr[indexPath.item].name!)
+        introductionCell.setIntroductionTF(text: dataArr[indexPath.item].introduction!)
         
         introductionCell.layer.cornerRadius = 10
         introductionCell.layer.borderWidth  = 2
+        introductionCell.layer.borderColor  = UIColor.systemCyan.cgColor
+        introductionCell.delegate = self
         
         return introductionCell
         
     }
-        
+}
+
+extension IntroductionCVC: IntroductionCellDelegate{
     
-   
- 
+    //MARK: - Delete Items
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        if let indexPaths = collectionView?.indexPathsForVisibleItems{
+            for indexPath in indexPaths {
+                if let cell = collectionView.cellForItem(at: indexPath) as? IntroductionCell{
+                    cell.isEditing = editing
+                }
+            }
+        }
+    }
+    
+    
+    func delIntroduction(cell: IntroductionCell) {
+        if let indexPath = collectionView.indexPath(for: cell){
+            
+            let introToDel = dataArr[indexPath.item]
+            dataArr.remove(at: indexPath.item)
+            persistenceManager.delStudentIntro(intro: introToDel)
+            collectionView.deleteItems(at: [indexPath])
+        }
+    }
 
 }

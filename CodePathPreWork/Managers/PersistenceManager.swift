@@ -34,5 +34,15 @@ class PersistenceManager{
         
         return loadedArr
     }
+    
+    func delStudentIntro(intro: NSManagedObject){
+        context.delete(intro)
+        do{
+            try context.save()
+        }catch{
+            print("Error delete context \(error)")
+        }
+        
+    }
 
 }

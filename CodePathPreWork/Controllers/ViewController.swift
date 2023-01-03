@@ -32,6 +32,7 @@ class ViewController: UIViewController {
     var introductions = [StudentIntro]()
     let persistenceManager = PersistenceManager()
     
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -120,12 +121,12 @@ class ViewController: UIViewController {
     
     func configureSchoolLogo(){
         
-        schoolLogo.layer.cornerRadius   = 20
         schoolLogo.layer.masksToBounds  = false
         
         schoolLogo.layer.shadowRadius   = 10
         schoolLogo.layer.shadowOpacity  = 0.5
         schoolLogo.layer.shadowOffset   = .zero
+        
     }
     
     
